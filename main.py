@@ -15,7 +15,7 @@ def inicializa():
 
 
 def matrizP(d):
-    return np.array([[1,0,0,0],[0,1,0,0],[0,0,0,-d],[0,0,-1/d,0]])
+    return np.array([[1,0,0],[0,1,0],[0,0,-1/d]])
 
 
 
@@ -26,20 +26,17 @@ def finaliza():
 
 def desenha(window: pygame.Surface):
 
-    pontos_cubo =np.array([[100,100,100,1],[100,-100, 100,1],[-100,-100,100,1],[-100,100,100,1], [100,100,300,1],[100,-100,300,1],[-100,-100,300,1],[-100,100,300,1]])
-    pontos_projecao = pontos_cubo @ np.linalg.inv(matrizP(100))
+    pontos_cubo =np.array([[100,100,1],[100,-100, 1],[-100,-100,1],[-100,100,1], [100,100,1],[100,-100,1],[-100,-100,1],[-100,100,1]])
+    translacao = np.array([[1,0,360],[0,1,360],[0,0,1]])
+    pontos_projecao = matrizP(1)@pontos_cubo.T
+    pontos_projecao = translacao@pontos_projecao
     print(pontos_projecao)
-    xp = pontos_projecao[:,0]/pontos_projecao[:,3]
-    yp = pontos_projecao[:,1]/pontos_projecao[:,3]
     
-    print("yp: ", yp)
-    print("xp: ", xp)
- 
-    
+    print( pontos_projecao[0][0]/pontos_projecao[2][0] , pontos_projecao[1][0]/pontos_projecao[2][0]), (pontos_projecao[0][1]/pontos_projecao[2][1], pontos_projecao[1][1]/pontos_projecao[2][1])
 
 
-    pygame.draw.line(window, (255, 0, 0), (xp[0], yp[0]), (xp[1], yp[1]), 1)
-    pygame.draw.line(window, (255, 0, 0), (xp[1], yp[1]), (xp[2], yp[2]), 1)
+    pygame.draw.line(window, (255, 0, 0), ( pontos_projecao[0][0]/pontos_projecao[2][0] , pontos_projecao[1][0]/pontos_projecao[2][0]), (pontos_projecao[0][1]/pontos_projecao[2][1], pontos_projecao[1][1]/pontos_projecao[2][1]), 3)
+
     pygame.display.update()
 
 def atualiza_estado():  
