@@ -82,7 +82,8 @@ def atualiza_estado(states):
     if keys[pygame.K_RIGHT]:
         states['angulo_Y'] -= 0.002
     if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
-        states['d'] -= 0.2
+        if states['d'] > 0.2:
+            states['d'] -= 0.2
     if keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]:
         states['d'] += 0.2
 
