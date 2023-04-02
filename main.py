@@ -46,7 +46,7 @@ def desenha(window: pygame.Surface, states):
     pontos_cubo =  rotacao_Y(states["angulo"]) @ pontos_cubo
     pontos_cubo =  np.linalg.inv(translacao_pra_origem(200,200))@ pontos_cubo
 
-    translacao = np.array([[1,0,0,300],[0,1,0,300],[0,0,1,0],[0,0,0,1]])
+    translacao = np.array([[1,0,0,360],[0,1,0,360],[0,0,1,0],[0,0,0,1]])
     pontos_projecao = matrizP(states['d'])@ pontos_cubo 
     pontos_projecao = translacao@ pontos_projecao
 
