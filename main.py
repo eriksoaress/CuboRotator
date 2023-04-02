@@ -8,7 +8,7 @@ def inicializa():
     # Inicializa o Pygame
     pygame.init()
     window = pygame.display.set_mode((720, 720), flags=pygame.SCALED)
-    states={"angulo":0, 'd': 200}
+    states={"angulo_X":0,"angulo_Y":0,"angulo_Z":0, 'd': 200}
 
    
 
@@ -19,14 +19,14 @@ def inicializa():
 def matrizP(d):
     return np.array([[1,0,0,0],[0,1,0,0],[0,0,0,-d],[0,0,-1/d,0]])
 
-def rotacao_Z(angulo):
-    return np.array([[np.cos(angulo),-np.sin(angulo),0,0],[np.sin(angulo),np.cos(angulo),0,0],[0,0,1,0],[0,0,0,1]])
+def rotacao_Z(angulo_Z):
+    return np.array([[np.cos(angulo_Z),-np.sin(angulo_Z),0,0],[np.sin(angulo_Z),np.cos(angulo_Z),0,0],[0,0,1,0],[0,0,0,1]])
 
-def rotacao_Y(angulo):
-    return np.array([[np.cos(angulo),0,np.sin(angulo),0],[0,1,0,0],[-np.sin(angulo),0,np.cos(angulo),0],[0,0,0,1]])
+def rotacao_Y(angulo_Y):
+    return np.array([[np.cos(angulo_Y),0,np.sin(angulo_Y),0],[0,1,0,0],[-np.sin(angulo_Y),0,np.cos(angulo_Y),0],[0,0,0,1]])
 
-def rotacao_X(angulo):
-    return np.array([[1,0,0,0],[0,np.cos(angulo),-np.sin(angulo),0],[0,np.sin(angulo),np.cos(angulo),0],[0,0,0,1]])
+def rotacao_X(angulo_X):
+    return np.array([[1,0,0,0],[0,np.cos(angulo_X),-np.sin(angulo_X),0],[0,np.sin(angulo_X),np.cos(angulo_X),0],[0,0,0,1]])
 
 def translacao_pra_origem(h_cubo, lado_cubo):
     return np.array([[1,0,0,0],[0,1,0,0],[0,0,1,-h_cubo - lado_cubo/2],[0,0,0,1]])
@@ -43,7 +43,8 @@ def desenha(window: pygame.Surface, states):
     
     pontos_cubo = np.array([[100,100,200,1],[100,-100, 200,1],[-100,-100,200,1],[-100,100,200,1], [100,100,400,1],[100,-100,400,1],[-100,-100,400,1],[-100,100,400,1]])
     pontos_cubo =  translacao_pra_origem(200,200)@ pontos_cubo.T
-    pontos_cubo =  rotacao_Y(states["angulo"]) @ pontos_cubo
+    pontos_cubo =  rotacao_Y(states["angulo_Y"]) @ pontos_cubo
+    pontos_cubo =  rotacao_X(states["angulo_X"]) @ pontos_cubo
     pontos_cubo =  np.linalg.inv(translacao_pra_origem(200,200))@ pontos_cubo
 
     translacao = np.array([[1,0,0,360],[0,1,0,360],[0,0,1,0],[0,0,0,1]])
@@ -71,15 +72,19 @@ def atualiza_estado(states):
         
         # Verifica se foi pressionada alguma tecla.
     keys = pygame.key.get_pressed()
-        
-    if keys[pygame.K_LEFT]:
-        states['angulo'] += 0.001
-    if keys[pygame.K_RIGHT]:
-        states['angulo'] -= 0.001
+    
     if keys[pygame.K_UP]:
-        states['d'] += 0.5
+        states['angulo_X'] += 0.002
     if keys[pygame.K_DOWN]:
-        states['d'] -= 0.5
+        states['angulo_X'] -= 0.002
+    if keys[pygame.K_LEFT]:
+        states['angulo_Y'] += 0.002
+    if keys[pygame.K_RIGHT]:
+        states['angulo_Y'] -= 0.002
+    if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
+        states['d'] -= 0.2
+    if keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]:
+        states['d'] += 0.2
 
            
        
