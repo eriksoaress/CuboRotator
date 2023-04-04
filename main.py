@@ -73,12 +73,10 @@ def atualiza_estado(states):
                 # Aumenta o valor de d se o mouse foi arrastado para cima
                 if states['d'] + 0.2 * diff <= 600:
                     states['d'] += 0.2 * diff
-                    print(f'diff: {diff}')
             elif diff < 0:
                 # Diminui o valor de d se o mouse foi arrastado para baixo
                 if states['d'] + 0.2 * diff >= 30:
                     states['d'] += 0.2 * diff
-                    print(f'diff: {diff}')
 
         # Verifica se foi pressionada alguma tecla.
     keys = pygame.key.get_pressed()
