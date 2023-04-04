@@ -7,6 +7,16 @@ Para utilizar o programa basta clonar esse repositório em algum local de sua m�
 ## Modelo matemático
 Para criar o cubo foi necessário, primeiramente, encontrar a matriz tranformação que nos permite encontrar as projeções dos vértices do cubo quando alteramos o valor para um eixo. Para isso realizamos os procedimentos expostos na imagem abaixo:
 
+Primeiro, fixamos o eixo y e trabalhamos apenas com o eixo x e z, projetando o ponto através do orifício e alcançando o pinhole que se encontra a uma distância 'd' da origem
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/desenho_plano.jpg">
+
+Após isso, utilizamos semelhança de triângulo para obter uma relação entre ambos os pontos
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/tan.jpg">
+
+
+
+
+
 
 ## Como utilizar
 Inicialmente, o cubo já estará girando, porém, é possível também interagir com ele através do mouse, caso clique na metade superior da tela o cubo ficará maior, e caso clique na metade inferior da tela o cubo ficará menor. Além disso, as teclas seta para cima, para baixo, direita, e esquerda, permitem alterar o ângulo de visuaização do cubo da forma que tiver interesse.
