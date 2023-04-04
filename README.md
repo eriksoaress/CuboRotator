@@ -12,6 +12,17 @@ Primeiro, fixamos o eixo y e trabalhamos apenas com o eixo x e z, projetando o p
 
 Após isso, utilizamos semelhança de triângulo para obter uma relação entre ambos os pontos
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/tan.jpg">
+Fizemos manipulações e operações matemáticas e chegamos em uma equação simplificada com x0 e xp
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/x0_inicial.jpg">
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/wp.jpg">
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/x0_simplificado.jpg">
+Depois de todos esses procedimentos, conseguimos escrever essas equações em forma de matriz para trabalhar mais facilmente com python
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/xp_matriz.jpg">
+Realizamos todos esses passos para chegar em uma matriz que nos ajuda a encontrar o ponto xp, mas precisamos realizar todos os pontos novamente, mas dessa vez ficando o eixo x e obtendo a matriz que nos ajuda a encontrar o ponto yp
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/yp_matriz.jpg">
+Por fim, podemos juntar as duas matrizes, haja vista que ambas dependem do mesmo zp, com o intuito de utilizar o resultado para nos auxiliar nas projeções dos vértices do cubo
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/matriz_final.jpg">
+
 
 
 
