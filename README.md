@@ -27,6 +27,11 @@ Realizamos todos esses passos para chegar em uma matriz que nos ajuda a encontra
 Por fim, podemos juntar as duas matrizes, haja vista que ambas dependem do mesmo zp, com o intuito de utilizar o resultado para nos auxiliar nas projeções dos vértices do cubo
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/matriz_final.jpg">
 
+Com a matriz P pronta, definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d). Transladamos o cubo para a origem para trabalhar com ele através da matriz [[1,0,0,0],[0,1,0,0],[0,0,1,-h_cubo - lado_cubo/2],[0,0,0,1]], rotacionamos o cubo em relação ao eixo x e y de acordo com os seus ângulos através das matrizes [[1,0,0,0],[0,np.cos(angulo_X),-np.sin(angulo_X),0],[0,np.sin(angulo_X),np.cos(angulo_X),0],[0,0,0,1]] e [np.cos(angulo_Y),0,np.sin(angulo_Y),0],[0,1,0,0],[-np.sin(angulo_Y),0,np.cos(angulo_Y),0],[0,0,0,1]], após fazermos uma pré-multiplicação com essas matrizes de rotação, retornamos o cubo para o centro da tela pré-multiplicando pela inversa da matriz utilizada anteriormente para leva-la para a origem.
+\
+Com todas as translações e rotações necessárias inicialmente, podemos utilizar a nossa matriz P pré multiplicando os pontos do cubo para projetar esses pontos no plano 3d.
+\
+A aplicação também permite que o usuário altere a distância focal do cubo, fazendo com que ele fique maior ou menor, a depender da ação do usuário nós alteramos o valor do 'd', sendo que diminuimos ele para deixar o cubo menor e aumentamos o 'd' para deixar o cubo maior.
 
 
 

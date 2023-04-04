@@ -36,9 +36,7 @@ def finaliza():
     if pygame.get_init():
         pygame.quit()
 
-def desenha(window: pygame.Surface, states):
-
-  
+def desenha(window: pygame.Surface, states):  
     window.fill((0, 0, 0))
     
     pontos_cubo = np.array([[100,100,200,1],[100,-100, 200,1],[-100,-100,200,1],[-100,100,200,1], [100,100,400,1],[100,-100,400,1],[-100,-100,400,1],[-100,100,400,1]])
