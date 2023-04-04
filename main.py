@@ -69,7 +69,19 @@ def atualiza_estado(states):
         # Verifica se o usuário clicou no botão "X" para fechar a janela
         if ev.type == pygame.QUIT:
             return False
-        
+        elif ev.type == pygame.MOUSEBUTTONDOWN:
+            diff = 360 - ev.pos[1]
+            if diff > 0:
+                # Aumenta o valor de d se o mouse foi arrastado para cima
+                if states['d'] + 0.2 * diff <= 600:
+                    states['d'] += 0.2 * diff
+                    print(f'diff: {diff}')
+            elif diff < 0:
+                # Diminui o valor de d se o mouse foi arrastado para baixo
+                if states['d'] + 0.2 * diff >= 30:
+                    states['d'] += 0.2 * diff
+                    print(f'diff: {diff}')
+
         # Verifica se foi pressionada alguma tecla.
     keys = pygame.key.get_pressed()
     
@@ -81,12 +93,7 @@ def atualiza_estado(states):
         states['angulo_Y'] += 0.002
     if keys[pygame.K_RIGHT]:
         states['angulo_Y'] -= 0.002
-    if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
-        if states['d'] > 0.2:
-            states['d'] -= 0.2
-    if keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]:
-        states['d'] += 0.2
-
+    
            
        
         
