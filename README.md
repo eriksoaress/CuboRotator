@@ -6,3 +6,7 @@ Para utilizar o programa basta clonar esse repositório em algum local de sua m�
 
 ## Modelo matemático
 Para criar o cubo foi necessário, primeiramente, encontrar a matriz tranformação que nos permite encontrar as projeções dos vértices do cubo quando alteramos o valor para um eixo. Para isso realizamos os procedimentos expostos na imagem abaixo:
+
+
+## Como utilizar
+Inicialmente, o cubo já estará girando, porém, é possível também interagir com ele através do mouse, caso clique na metade superior da tela o cubo ficará maior, e caso clique na metade inferior da tela o cubo ficará menor. Além disso, as teclas seta para cima, para baixo, direita, e esquerda, permitem alterar o ângulo de visuaização do cubo da forma que tiver interesse.
