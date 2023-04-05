@@ -31,7 +31,7 @@ Com a matriz P pronta, definimos os pontos iniciais dos vértices do cubo, o ân
 \
 Com todas as translações e rotações necessárias inicialmente, podemos utilizar a nossa matriz P pré multiplicando os pontos do cubo para projetar esses pontos no plano 2D.
 \
-A aplicação também permite que o usuário altere a distância focal do cubo, fazendo com que ele fique maior ou menor, a depender da ação do usuário nós alteramos o valor do 'd', sendo que diminuimos ele para deixar o cubo menor e aumentamos o 'd' para deixar o cubo maior.
+A aplicação possibilita o usuário andar pelo plano através das teclas "A","W","S" e "D", também permite que o usuário altere a distância focal do cubo, fazendo com que ele fique maior ou menor, a depender da ação do usuário nós alteramos o valor do 'd', sendo que diminuimos ele para deixar o cubo menor e aumentamos o 'd' para deixar o cubo maior.
 
 
 
