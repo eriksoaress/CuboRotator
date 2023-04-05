@@ -30,12 +30,14 @@ Por fim, podemos juntar as duas matrizes, haja vista que ambas dependem do mesmo
 Com a matriz P pronta, definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d). Transladamos o cubo para a origem pré multiplicando a matriz: [[1,0,0,0],[0,1,0,0],[0,0,1,-300],[0,0,0,1]]
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/translacao_origem.jpg">
 Cf=matriz final do cubo, Tt=matriz de translação, Ci=matriz inicial do cubo (antes da transformação)\
+\
 Rotacionamos o cubo em relação ao eixo x e y de acordo com os seus ângulos através das matrizes [[1,0,0,0],[0,np.cos(angulo_X),-np.sin(angulo_X),0],[0,np.sin(angulo_X),np.cos(angulo_X),0],[0,0,0,1]] e [np.cos(angulo_Y),0,np.sin(angulo_Y),0],[0,1,0,0],[-np.sin(angulo_Y),0,np.cos(angulo_Y),0],[0,0,0,1]]
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/rotacao.jpg">
 Cf=matriz final do cubo, Tr=matriz de rotação, Ci=matriz inicial do cubo (antes da transformação)\
+\
 Após fazermos uma pré-multiplicação com essas matrizes de rotação, retornamos o cubo para o centro da tela pré-multiplicando pela inversa da matriz utilizada anteriormente para leva-la para a origem.
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/translacao_inversa.jpg">
-Cf=matriz final do cubo, Tt^-1=matriz inversa de translação, Ci=matriz inicial do cubo (antes da transformação)
+Cf=matriz final do cubo, Tt^-1=matriz inversa de translação, Ci=matriz inicial do cubo (antes da transformação)\
 \
 Com todas as translações e rotações necessárias inicialmente, podemos utilizar a nossa matriz P pré multiplicando os pontos do cubo para projetar esses pontos no plano 2D.
 \
