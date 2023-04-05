@@ -7,7 +7,7 @@ Para utilizar o programa basta clonar esse repositório em algum local de sua m�
 ## Modelo matemático
 Para criar o cubo foi necessário, primeiramente, encontrar a matriz tranformação que nos permite projetar os vértices de um cubo que possui 3 dimensões em um plano 2D que no caso é a tela do pygame. Para isso realizamos os procedimentos expostos na imagem abaixo:
 
-Primeiro, fixamos o eixo y e trabalhamos apenas com o eixo x e z, projetando o ponto através do orifício e alcançando o pinhole que se encontra a uma distância 'd' da origem
+Primeiro, fixamos o eixo y e trabalhamos apenas com o eixo x e z, projetando o ponto através do orifício e alcançando o anteparo que se encontra a uma distância 'd' da origem
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/desenho_plano.jpg">
 \
 Após isso, utilizamos semelhança de triângulo para obter uma relação entre ambos os pontos
@@ -27,11 +27,17 @@ Realizamos todos esses passos para chegar em uma matriz que nos ajuda a encontra
 Por fim, podemos juntar as duas matrizes, haja vista que ambas dependem do mesmo zp, com o intuito de utilizar o resultado para nos auxiliar nas projeções dos vértices do cubo
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/matriz_final.jpg">
 
-Com a matriz P pronta, definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d). Transladamos o cubo para a origem através da matriz [[1,0,0,0],[0,1,0,0],[0,0,1,-h_cubo - lado_cubo/2],[0,0,0,1]], rotacionamos o cubo em relação ao eixo x e y de acordo com os seus ângulos através das matrizes [[1,0,0,0],[0,np.cos(angulo_X),-np.sin(angulo_X),0],[0,np.sin(angulo_X),np.cos(angulo_X),0],[0,0,0,1]] e [np.cos(angulo_Y),0,np.sin(angulo_Y),0],[0,1,0,0],[-np.sin(angulo_Y),0,np.cos(angulo_Y),0],[0,0,0,1]], após fazermos uma pré-multiplicação com essas matrizes de rotação, retornamos o cubo para o centro da tela pré-multiplicando pela inversa da matriz utilizada anteriormente para leva-la para a origem.
+Com a matriz P pronta, definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d). Transladamos o cubo para a origem pré multiplicando a matriz: [[1,0,0,0],[0,1,0,0],[0,0,1,-300],[0,0,0,1]]
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/translacao_origem.jpg">
+Rotacionamos o cubo em relação ao eixo x e y de acordo com os seus ângulos através das matrizes [[1,0,0,0],[0,np.cos(angulo_X),-np.sin(angulo_X),0],[0,np.sin(angulo_X),np.cos(angulo_X),0],[0,0,0,1]] e [np.cos(angulo_Y),0,np.sin(angulo_Y),0],[0,1,0,0],[-np.sin(angulo_Y),0,np.cos(angulo_Y),0],[0,0,0,1]]
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/rotacao.jpg">
+Após fazermos uma pré-multiplicação com essas matrizes de rotação, retornamos o cubo para o centro da tela pré-multiplicando pela inversa da matriz utilizada anteriormente para leva-la para a origem.
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/translacao_inversa.jpg">
+
 \
 Com todas as translações e rotações necessárias inicialmente, podemos utilizar a nossa matriz P pré multiplicando os pontos do cubo para projetar esses pontos no plano 2D.
 \
-A aplicação possibilita o usuário andar pelo plano através das teclas "A","W","S" e "D", também permite que o usuário altere a distância focal do cubo, fazendo com que ele fique maior ou menor, a depender da ação do usuário nós alteramos o valor do 'd', sendo que diminuimos ele para deixar o cubo menor e aumentamos o 'd' para deixar o cubo maior.
+A aplicação também permite que o usuário altere a distância focal do cubo, fazendo com que ele fique maior ou menor, a depender da ação do usuário nós alteramos o valor do 'd', sendo que diminuimos ele para deixar o cubo menor e aumentamos o 'd' para deixar o cubo maior.
 
 
 
