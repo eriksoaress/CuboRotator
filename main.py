@@ -68,15 +68,13 @@ def atualiza_estado(states):
         if ev.type == pygame.QUIT:
             return False
         elif ev.type == pygame.MOUSEBUTTONDOWN:
-            diff = 360 - ev.pos[1]
-            if diff > 0:
-                # Aumenta o valor de d se o mouse foi arrastado para cima
-                if states['d'] + 0.2 * diff <= 600:
-                    states['d'] += 0.2 * diff
-            elif diff < 0:
-                # Diminui o valor de d se o mouse foi arrastado para baixo
-                if states['d'] + 0.2 * diff >= 30:
-                    states['d'] += 0.2 * diff
+            # Verifique se o botão do mouse é o scroll para cima
+            if ev.button == 4:
+                if states['d'] + 5 <= 600:
+                    states['d'] += 5
+            elif ev.button == 5:
+                if states['d'] - 5 >= 30:
+                    states['d'] -= 5
 
         # Verifica se foi pressionada alguma tecla.
     keys = pygame.key.get_pressed()
