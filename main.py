@@ -8,7 +8,7 @@ def inicializa():
     # Inicializa o Pygame
     pygame.init()
     window = pygame.display.set_mode((720, 720), flags=pygame.SCALED)
-    cubo = np.array([[100,100,100,1],[100,-100,100,1],[-100,-100,100,1],[-100,100,100,1],[100,100,300,1],[100,-100,300,1],[-100,-100,300,1],[-100,100,300,1]])
+    cubo = np.array([[100,100,200,1],[100,-100,200,1],[-100,-100,200,1],[-100,100,200,1],[100,100,400,1],[100,-100,400,1],[-100,-100,400,1],[-100,100,400,1]])
     states={"angulo_X":0, 'd': 200, 'posicao_mouse':(0,0), 'aux': (0,0), 'angulo_Y':0, 'angulo_Z': 0, 'rodando': True, 'cubo_x':100, 'cubo_y':100, 'cubo_z':200, 'lado_cubo':200, 'h': 0, 'left': False, 
             'd': 200, 'l':False, 'angulo2': 0.01, 'cubo': cubo, 'last_mouse_pos': pygame.mouse.get_pos(), 'right': False, 'down':False, 'up':False}
   
@@ -32,7 +32,7 @@ def rotacao_X(angulo_X):
     return np.array([[1,0,0,0],[0,np.cos(angulo_X),-np.sin(angulo_X),0],[0,np.sin(angulo_X),np.cos(angulo_X),0],[0,0,0,1]])
 
 def translacao_pra_origem(h_cubo, lado_cubo):
-    return np.array([[1,0,0,0],[0,1,0,0],[0,0,1,-h_cubo - lado_cubo/2],[0,0,0,1]])
+    return np.array([[1,0,0,0],[0,1,0,0],[0,0,1,-300],[0,0,0,1]])
 
 
 
@@ -49,7 +49,7 @@ def desenha(window: pygame.Surface, states):
     window.fill((0, 0, 0))
     
     pontos_cubo = states['cubo']
-    if states['right']:
+    if states['right'] and not(states['rodando']) :
         pontos_cubo =  pontos_cubo@ rotacao_Y(0.04)
         states['cubo'] = pontos_cubo
         states['right'] = False
@@ -118,9 +118,9 @@ def atualiza_estado(states):
             states['rodando'] = False
          
 
-            print(states['posicao_mouse'])
-        if ev.type == pygame.MOUSEBUTTONUP:
-            states['aux'] = (states['angulo_X'], states['angulo_Y'])  
+        #     print(states['posicao_mouse'])
+        # if ev.type == pygame.MOUSEBUTTONUP:
+        #     states['aux'] = (states['angulo_X'], states['angulo_Y'])  
         
         keys = pygame.key.get_pressed()
 
@@ -140,12 +140,20 @@ def atualiza_estado(states):
            
        
 
-    mouse = pygame.mouse.get_pos()
-    dfx = mouse[0] - states['posicao_mouse'][0]
-    dfy = mouse[1] - states['posicao_mouse'][1]
-    if pygame.mouse.get_pressed()[0]:
-        states['angulo_Y'] =  dfx/700 + states['aux'][1]
-        states['angulo_X'] =  -dfy/700 + states['aux'][0]       
+        mouse = pygame.mouse.get_pos()
+        dfx = mouse[0] - states['posicao_mouse'][0]
+        dfy = mouse[1] - states['posicao_mouse'][1]
+        if pygame.mouse.get_pressed()[0]:
+            states['angulo_Y'] =  dfx/700 + states['aux'][1]
+            states['angulo_X'] =  -dfy/700 + states['aux'][0]       
+        elif ev.type == pygame.MOUSEBUTTONDOWN:
+            # Verifique se o botão do mouse é o scroll para cima
+            if ev.button == 4:
+                if states['d'] + 5 <= 600:
+                    states['d'] += 5
+            elif ev.button == 5:
+                if states['d'] - 5 >= 30:
+                    states['d'] -= 5
 
         # Verifica se foi pressionada alguma tecla.
     keys = pygame.key.get_pressed()
@@ -185,6 +193,15 @@ def atualiza_estado(states):
     states['last_mouse_pos'] = mouse_pos
     
 
+    # if keys[pygame.K_UP]:
+    #     states['angulo_X'] += 0.002
+    # if keys[pygame.K_DOWN]:
+    #     states['angulo_X'] -= 0.002
+    # if keys[pygame.K_LEFT]:
+    #     states['angulo_Y'] += 0.002
+    # if keys[pygame.K_RIGHT]:
+    #     states['angulo_Y'] -= 0.002
+    
            
        
         
