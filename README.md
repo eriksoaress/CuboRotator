@@ -21,7 +21,7 @@ Fizemos manipulações e operações matemáticas e chegamos em uma equação si
 Depois de todos esses procedimentos, conseguimos escrever essas equações em forma de matriz para trabalhar mais facilmente com python
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/xp_matriz.jpg">
 \
-Realizamos todos esses passos para chegar em uma matriz que nos ajuda a encontrar o ponto xp, mas precisamos realizar todos os pontos novamente, mas dessa vez ficando o eixo x e obtendo a matriz que nos ajuda a encontrar o ponto yp
+Realizamos todos esses passos para chegar em uma matriz que nos ajuda a encontrar o ponto xp, mas precisamos realizar todos os pontos novamente, mas dessa vez fixando o eixo x e trabalhando com y e z para obter a matriz que nos ajuda a encontrar o ponto yp
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/yp_matriz.jpg">
 \
 Por fim, podemos juntar as duas matrizes, haja vista que ambas dependem do mesmo zp, com o intuito de utilizar o resultado para nos auxiliar nas projeções dos vértices do cubo
