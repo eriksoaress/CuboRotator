@@ -44,12 +44,12 @@ Com todas as translações e rotações necessárias inicialmente, podemos utili
 PC=projeção do cubo no plano 2d, P=matriz que encontramos para projetar os pontos do cubo, Ci=matriz inicial do cubo (antes da transformação)\
 
 \
-A aplicação possibilita o usuário andar pelo plano através das teclas "A","W","S" e "D", para isso nós apenas incrementamos ou decrementamos valores dos eixos para que o cubo vá para a devida posição a depender da ação feita pelo usuário, também permite que o usuário altere a distância focal do cubo, fazendo com que ele fique maior ou menor, a depender da ação do usuário nós alteramos o valor do 'd', sendo que diminuimos ele para deixar o cubo menor e aumentamos o 'd' para deixar o cubo maior, por fim, o usuário é capaz de virar a tela como se estivesse em um jogo em primeira pessoa, bastando mover o mouse para o lado que tiver interesse em olhar.
+A aplicação possibilita o usuário andar pelo plano através das teclas "A","W","S" e "D", para isso nós apenas incrementamos ou decrementamos valores dos eixos para que o cubo vá para a devida posição a depender da ação feita pelo usuário, também permite que o usuário altere a distância focal do cubo, fazendo com que ele fique maior ou menor, a depender da ação do usuário nós alteramos o valor do 'd', sendo que diminuimos ele para deixar o cubo menor e aumentamos o 'd' para deixar o cubo maior, por fim, o usuário é capaz de virar a tela como se estivesse em um jogo em primeira pessoa, bastando mover o mouse para o lado que tiver interesse em olhar, isso é posível pois estamos rotacionando o cubo em torno do eixo y através da pré multiplicação dos pontos do cubo pela matriz de rotação R [[np.cos(angulo_Y), 0, np.sin(angulo_Y), 0],[0, 1, 0, 0],[-np.sin(angulo_Y), 0, np.cos(angulo_Y), 0],[0, 0, 0, 1]]
 
 
 
 
-
+ 
 
 ## Como utilizar
 Inicialmente, o cubo já estará girando, porém, é possível interagir com ele, mas antes de tudo é preciso clicar com o botão esquerdo do mouse para que ele pare de girar e as interações sejam possíveis. Primeiro, é possível interagir através das teclas "A" (anda para a esquerda e portanto o cubo vai para a direita), "D" (anda para a direita e portanto o cubo vai para a esquerda), "W" (se aproxima do cubo) e "S" (se distancia do cubo). Tambpem é permitido interagir atravpes do mouse, caso o usuário role o scroll do mouse para baixo o cubo ficará maior, e caso role para cima o cubo ficará menor, e caso mova o mouse, a visão será voltada para aquela direção, assim como em um jogo em primeira pessoa. .
