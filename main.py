@@ -74,18 +74,6 @@ def desenha(window: pygame.Surface, states):
         states['cubo'] = pontos_cubo
         states['right'] = False
     
-    # Se a tecla 'down' foi pressionada, rotaciona o cubo em torno do eixo x no sentido horário
-    if states['down']:
-        pontos_cubo = pontos_cubo @ rotacao_X(0.02)
-        states['cubo'] = pontos_cubo
-        states['down'] = False
-    
-    # Se a tecla 'up' foi pressionada, rotaciona o cubo em torno do eixo x no sentido anti-horário
-    if states['up']:
-        pontos_cubo = pontos_cubo @ rotacao_X(-0.02)
-        states['cubo'] = pontos_cubo
-        states['up'] = False
-    
     # Se a tecla 'left' foi pressionada e o cubo não está girando, rotaciona o cubo em torno do eixo y
     if states['left']:
         pontos_cubo = pontos_cubo @ rotacao_Y(-0.04)
@@ -140,21 +128,28 @@ def atualiza_estado(states):
 
         # Verifica se o usuário clicou com o mouse
         if ev.type == pygame.MOUSEBUTTONDOWN :
-            states['posicao_mouse'] = pygame.mouse.get_pos()
-            states['rodando'] = False
+            if ev.button == 1:
+                states['posicao_mouse'] = pygame.mouse.get_pos()
+                if states['rodando']:
+                    states['rodando'] = False
+                else:
+                    states['rodando'] = True
+                    states['cubo'] = np.array([[100, 100, 200, 1],[100, -100, 200, 1],[-100, -100, 200, 1],[-100, 100, 200, 1],[100, 100, 400, 1],[100, -100, 400, 1],[-100, -100, 400, 1],[-100, 100, 400, 1]])
+
         
 
         # Verifica se o usuário apertou em alguma das seguintes teclas: ASDW, para mover o personagem dentro do plano
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_a]:
-            states['cubo'][:,0] -= 10
-        if keys[pygame.K_d]:
-            states['cubo'][:,0] += 10
-        if keys[pygame.K_w]:
-            states['cubo'][:,2] -= 10
-        if keys[pygame.K_s]:
-            states['cubo'][:, 2] += 10
-          
+        if not states['rodando']:
+            if keys[pygame.K_a]:
+                states['cubo'][:,0] -= 10
+            if keys[pygame.K_d]:
+                states['cubo'][:,0] += 10
+            if keys[pygame.K_w]:
+                states['cubo'][:,2] -= 10
+            if keys[pygame.K_s]:
+                states['cubo'][:, 2] += 10
+            
 
         mouse = pygame.mouse.get_pos()
         dfx = mouse[0] - states['posicao_mouse'][0]
@@ -163,28 +158,30 @@ def atualiza_estado(states):
             states['angulo_Y'] =  dfx/700 + states['aux'][1]
             states['angulo_X'] =  -dfy/700 + states['aux'][0]       
         elif ev.type == pygame.MOUSEBUTTONDOWN:
-            # Verifique se o botão do mouse é o scroll para cima
-            if ev.button == 4:
-                if states['d'] + 5 <= 600:
-                    states['d'] += 5
-            # Verifique se o botão do mouse é o scroll para baixo
-            elif ev.button == 5:
-                if states['d'] - 5 >= 30:
-                    states['d'] -= 5
+            if not states['rodando']:
+                # Verifique se o botão do mouse é o scroll para cima
+                if ev.button == 4:
+                    if states['d'] + 5 <= 600:
+                        states['d'] += 5
+                # Verifique se o botão do mouse é o scroll para baixo
+                elif ev.button == 5:
+                    if states['d'] - 5 >= 30:
+                        states['d'] -= 5
 
         # Verifica se foi pressionada alguma tecla.
     keys = pygame.key.get_pressed()
     mouse_pos = pygame.mouse.get_pos()
     # Verificações para ver se o mouse está se movendo
-    if mouse_pos[0] < states['last_mouse_pos'][0]:
-        states['right'] = True
-    if mouse_pos[0] > states['last_mouse_pos'][0]:
-        states['left'] = True
-    if mouse_pos[1] < states['last_mouse_pos'][1]:
-        states['up'] = True
-    if mouse_pos[1] > states['last_mouse_pos'][1]:
-        states['down'] = True
-    states['last_mouse_pos'] = mouse_pos
+    if not states['rodando']:
+        if mouse_pos[0] < states['last_mouse_pos'][0]:
+            states['right'] = True
+        if mouse_pos[0] > states['last_mouse_pos'][0]:
+            states['left'] = True
+        if mouse_pos[1] < states['last_mouse_pos'][1]:
+            states['up'] = True
+        if mouse_pos[1] > states['last_mouse_pos'][1]:
+            states['down'] = True
+        states['last_mouse_pos'] = mouse_pos
 
     # Retorna "True" para indicar que o jogo continua em andamento
     return True
