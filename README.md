@@ -27,7 +27,7 @@ Realizamos todos esses passos para chegar em uma matriz que nos ajuda a encontra
 Por fim, podemos juntar as duas matrizes, haja vista que ambas dependem do mesmo zp, com o intuito de utilizar o resultado para nos auxiliar nas projeções dos vértices do cubo
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/matriz_final.jpg">
 
-Com essa matriz pronta, a chamaremos de matriz P, e definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d). Transladamos o cubo para a origem pré multiplicando a matriz: [[1,0,0,0],[0,1,0,0],[0,0,1,-300],[0,0,0,1]]
+Com essa matriz pronta, a chamaremos de matriz P, e definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d). Transladamos o cubo para a origem pré multiplicando a matriz de translação T: [[1,0,0,0],[0,1,0,0],[0,0,1,-300],[0,0,0,1]]
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/translacao_origem.jpg">
 Cf=matriz final do cubo, Tt=matriz de translação, Ci=matriz inicial do cubo (antes da transformação)\
 \
