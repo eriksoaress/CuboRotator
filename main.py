@@ -177,10 +177,6 @@ def atualiza_estado(states):
             states['right'] = True
         if mouse_pos[0] > states['last_mouse_pos'][0]:
             states['left'] = True
-        if mouse_pos[1] < states['last_mouse_pos'][1]:
-            states['up'] = True
-        if mouse_pos[1] > states['last_mouse_pos'][1]:
-            states['down'] = True
         states['last_mouse_pos'] = mouse_pos
 
     # Retorna "True" para indicar que o jogo continua em andamento
