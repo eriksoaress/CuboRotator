@@ -15,6 +15,7 @@ Após isso, utilizamos semelhança de triângulo para obter uma relação entre 
 \
 Fizemos manipulações e operações matemáticas e chegamos em uma equação simplificada com x0 e xp
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/x0_inicial.jpg">
+Tivemos que fazer um artifício (mudança de variável) fazendo $W_p = \frac{-Z0}{d}$, :
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/wp.jpg">
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/x0_simplificado.jpg">
 \
