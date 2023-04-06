@@ -7,7 +7,7 @@ Para utilizar o programa basta clonar esse repositório em algum local de sua m�
 ## Modelo matemático
 Para criar o cubo foi necessário, primeiramente, encontrar a matriz tranformação que nos permite projetar os vértices de um cubo que possui 3 dimensões em um plano 2D que no caso é a tela do pygame. Para isso realizamos os procedimentos expostos na imagem abaixo:
 
-Primeiro, fixamos o eixo y e trabalhamos apenas com o eixo x e z, projetando o ponto através do orifício e alcançando o anteparo que se encontra a uma distância 'd' da origem
+Primeiro, fixamos o eixo y e trabalhamos apenas com o eixo x e z, projetando o ponto através do orifício (pinhole) e alcançando o anteparo que se encontra a uma distância 'd' da origem
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/desenho_plano.jpg">
 \
 Após isso, utilizamos semelhança de triângulo para obter uma relação entre ambos os pontos
@@ -15,7 +15,9 @@ Após isso, utilizamos semelhança de triângulo para obter uma relação entre 
 \
 Fizemos manipulações e operações matemáticas e chegamos em uma equação simplificada com x0 e xp
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/x0_inicial.jpg">
+
 Tivemos que fazer um artifício (mudança de variável) fazendo $W_p = \frac{-Z0}{d}$, :
+
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/wp.jpg">
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/x0_simplificado.jpg">
 \
@@ -28,7 +30,11 @@ Realizamos todos esses passos para chegar em uma matriz que nos ajuda a encontra
 Por fim, podemos juntar as duas matrizes, haja vista que ambas dependem do mesmo zp, com o intuito de utilizar o resultado para nos auxiliar nas projeções dos vértices do cubo
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/matriz_final.jpg">
 
-Com essa matriz pronta, a chamaremos de matriz P, e definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d). Transladamos o cubo para a origem pré multiplicando a matriz de translação T: [[1,0,0,0],[0,1,0,0],[0,0,1,-300],[0,0,0,1]]
+Com essa matriz pronta, a chamaremos de matriz P, e definimos os pontos iniciais dos vértices do cubo, o ângulo de cada eixo, e a distância focal (d).
+
+
+
+Transladamos o cubo para a origem pré multiplicando a matriz de translação Ti ([[1,0,0,0],[0,1,0,0],[0,0,1,-300],[0,0,0,1]]) pela matriz do cubo (Ci).
 <img src= "https://github.com/eriksoaress/CuboRotator/blob/main/translacao_origem.jpg">
 Cf=matriz final do cubo, Tt=matriz de translação, Ci=matriz inicial do cubo (antes da transformação)\
 \
