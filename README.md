@@ -50,3 +50,6 @@ A aplicação possibilita o usuário andar pelo plano através das teclas "A","W
 
 ## Como utilizar
 Inicialmente, o cubo já estará girando, porém, é possível interagir com ele, mas antes de tudo é preciso clicar com o botão esquerdo do mouse para que ele pare de girar e as interações sejam possíveis. Primeiro, é possível interagir através das teclas "A" (anda para a esquerda e portanto o cubo vai para a direita), "D" (anda para a direita e portanto o cubo vai para a esquerda), "W" (se aproxima do cubo) e "S" (se distancia do cubo). Tambpem é permitido interagir atravpes do mouse, caso o usuário role o scroll do mouse para baixo o cubo ficará maior, e caso role para cima o cubo ficará menor, e caso mova o mouse, a visão será voltada para aquela direção, assim como em um jogo em primeira pessoa. .
+
+## Apresentacao gif
+<img src= "https://github.com/eriksoaress/CuboRotator/blob/main/apresentacao.gif">
